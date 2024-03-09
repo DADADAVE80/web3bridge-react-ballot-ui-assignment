@@ -5,13 +5,14 @@ const useDelegateVote = (address) => {
     return useCallback(async () => {
         if (!isSupportedChain(chainId)) return console.error("Wrong network");
         if (!isAddress(address)) return console.error("Invalid address");
+
         const readWriteProvider = getProvider(walletProvider);
         const signer = await readWriteProvider.getSigner();
 
         const contract = getProposalsContract(signer);
 
         try {
-            const estimatedGas = await contract.giveRightToVote.estimateGas(
+            const estimatedGas = await contract.delegate.estimateGas(
                 address
             );
             // console.log("estimatedGas: ", estimatedGas);
@@ -24,7 +25,7 @@ const useDelegateVote = (address) => {
 
             // console.log("estimated: ", gasFee);
 
-            const transaction = await contract.giveRightToVote(address, {
+            const transaction = await contract.delegate(address, {
                 gasLimit: estimatedGas,
             });
             console.log("transaction: ", transaction);
@@ -33,10 +34,10 @@ const useDelegateVote = (address) => {
             console.log("receipt: ", receipt);
 
             if (receipt.status) {
-                return console.log("giveRightToVote successfull!");
+                return console.log("delegateVote successfull!");
             }
 
-            console.log("giveRightToVote failed!");
+            console.log("delegateVote failed!");
         } catch (error) {
             console.error("error: ", error);
         }

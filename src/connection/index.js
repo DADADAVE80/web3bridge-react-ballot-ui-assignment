@@ -10,6 +10,14 @@ const sepolia = {
     rpcUrl: import.meta.env.VITE_rpc_url,
 };
 
+const mumbai = {
+    chainId: 80001,
+    name: "Polygon Mumbai",
+    currency: "MATIC",
+    explorerUrl: "https://sepolia.etherscan.io",
+    rpcUrl: import.meta.env.VITE_rpc_url,
+};
+
 const metadata = {
     name: "My Website",
     description: "My Website description",
@@ -20,7 +28,7 @@ const metadata = {
 export const configureWeb3Modal = () =>
     createWeb3Modal({
         ethersConfig: defaultConfig({ metadata }),
-        chains: [sepolia],
+        chains: [sepolia, mumbai],
         projectId: import.meta.env.VITE_projectId,
         enableAnalytics: false, // Optional - defaults to your Cloud configuration
     });
