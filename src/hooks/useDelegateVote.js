@@ -1,3 +1,13 @@
+import { useCallback } from "react";
+import { isSupportedChain } from "../utils";
+import { isAddress } from "ethers";
+import { getProvider } from "../constants/providers";
+import { getProposalsContract } from "../constants/contracts";
+import {
+    useWeb3ModalAccount,
+    useWeb3ModalProvider,
+} from "@web3modal/ethers/react";
+
 const useDelegateVote = (address) => {
     const { chainId } = useWeb3ModalAccount();
     const { walletProvider } = useWeb3ModalProvider();

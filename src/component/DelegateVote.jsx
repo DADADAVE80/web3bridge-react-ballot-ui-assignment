@@ -16,7 +16,7 @@ const DelegateVote = ( ) => {
                             <Text as="div" size="2" mb="1" weight="bold">
                                 Delegate&apos;s Address
                             </Text>
-                            <TextField.Input placeholder="Enter Delegate's Address" />
+                            <TextField.Input value={address} placeholder="Enter Delegate's Address" onChange={(e) => setAddress(e.target.value)}/>
                         </label>
                         <Button onClick={() => handleDelegate(address)}>
                             Delegate vote
